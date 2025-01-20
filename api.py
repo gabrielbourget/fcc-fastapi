@@ -92,3 +92,12 @@ async def update_student(student_id: str, student: StudentUpdate):
 
   return { "message": "Student with ID provided not found" }
 
+@app.delete("/student/{student_id}")
+async def delete_student(student_id: str):
+  """Delete student"""
+  for existing_student in students:
+    if existing_student["id"] == student_id:
+      students.remove(existing_student)
+      return { "message": "Student deleted successfully" }
+
+  return { "message": "Student with ID provided not found" }
